@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SolverTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-09-27T23:43:17" hostname="JVN019401933" time="0.004">
+  <properties/>
+  <testcase name="moves deve retornar corretamente o número de movimentos em um tabuleiro 4x4" classname="SolverTest" time="0.002"/>
+  <testcase name="moves deve retornar corretamente o número de movimentos" classname="SolverTest" time="0.001"/>
+  <testcase name="solution deve corretamente retornar a solução viável" classname="SolverTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

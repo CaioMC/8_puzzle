@@ -9,17 +9,18 @@ public class Solver {
     private List<Board> sequenceBoard = new ArrayList<>();
 
 
-    public Solver(Board initial) {
+    public Solver(Board initialBoard) {
+
         // encontra a solução para o tabuleiro inicial (usando o algoritmo A*)
         Queue<SearchNode> queue = new PriorityQueue<>();
 
-        searchNodeCurrent = new SearchNode(initial, null);
+        searchNodeCurrent = new SearchNode(initialBoard, null);
         queue.add(searchNodeCurrent);
 
         while (!searchNodeCurrent.board.isGoal()) {
             searchNodeCurrent = queue.poll();
 
-            for (Board board : searchNodeCurrent.board.neighbors()) {
+            for (Board board : searchNodeCurrent.board.neig()) {
                 if (searchNodeCurrent.previousNode == null || !board.equals(searchNodeCurrent.previousNode.board)) {
                     queue.add(new SearchNode(board, searchNodeCurrent));
                 }

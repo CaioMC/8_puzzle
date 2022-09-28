@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BoardTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2022-09-27T23:43:17" hostname="JVN019401933" time="0.082">
+  <properties/>
+  <testcase name="tileAt deve lançar uma exceção para índices de linha negativos." classname="BoardTest" time="0.023"/>
+  <testcase name="isSolvable deve ser true para um board resolvível" classname="BoardTest" time="0.002"/>
+  <testcase name="equals deve corretamente indicar que dois boards são diferentes" classname="BoardTest" time="0.004"/>
+  <testcase name="isGoal deve ser false para um board não goal" classname="BoardTest" time="0.002"/>
+  <testcase name="toString deve corretamente retornar uma representação do board" classname="BoardTest" time="0.016"/>
+  <testcase name="hamming deve ser calculado corretamente para um tabuleiro 4x4" classname="BoardTest" time="0.001"/>
+  <testcase name="tileAt deve retornar o valor correto." classname="BoardTest" time="0.001"/>
+  <testcase name="equals deve corretamente indicar que dois boards são iguais" classname="BoardTest" time="0.001"/>
+  <testcase name="manhattan deve ser calculado corretamente" classname="BoardTest" time="0.002"/>
+  <testcase name="tileAt deve lançar uma exceção para índices de coluna maiores que o tamanho do board." classname="BoardTest" time="0.002"/>
+  <testcase name="size deve retornar corretamente o tamanho do board" classname="BoardTest" time="0.002"/>
+  <testcase name="manhattan deve ser calculado corretamente para um tabuleiro 4x4" classname="BoardTest" time="0.001"/>
+  <testcase name="neighbors deve retornar os tabuleiros vizinhos corretamente" classname="BoardTest" time="0.001"/>
+  <testcase name="tileAt deve lançar uma exceção para índices de linha maiores que o tamanho do board." classname="BoardTest" time="0.001"/>
+  <testcase name="hamming deve ser calculado corretamente" classname="BoardTest" time="0.002"/>
+  <testcase name="isGoal deve ser true para um board goal" classname="BoardTest" time="0.001"/>
+  <testcase name="isSolvable deve ser true para um board inresolvível" classname="BoardTest" time="0.001"/>
+  <testcase name="tileAt deve lançar uma exceção para índices de coluna negativo." classname="BoardTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

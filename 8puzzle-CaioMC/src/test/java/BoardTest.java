@@ -3,7 +3,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -168,12 +168,12 @@ class BoardTest {
         int[][] neighbors2 = {
                 {4, 1, 3}, {0, 2, 5}, {7, 8, 6}
         };
-        List<Board> expected = new ArrayList<>();
-        expected.add(new Board(neighbors1));
+        Collection<Board> expected = new ArrayList<>();
         expected.add(new Board(neighbors2));
+        expected.add(new Board(neighbors1));
 
-        PriorityQueue<Board> neighbors = (PriorityQueue<Board>) board.neighbors();
-        List<Board> actual = new ArrayList<>(neighbors);
+        Collection<Board> neighbors = (Collection<Board>) board.neighbors();
+        Collection<Board> actual = new ArrayList<>(neighbors);
 
         assertEquals(expected, actual);
     }

@@ -1,18 +1,25 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Board {
+
+    private final int[][] tilesCopy;
     private final char[] board;
     private int size;
     private int indexRow;
     private int indexColumn;
     private List<Board> neighbour = new ArrayList<>();
-    public Board(int[][] tiles){
+    private int manhattan;
+
+    public Board(int[][] tiles) {
         // constrói um tabuleiro a partir de um array de quadros N-por-N
         // (onde tiles[i][j] = quadro na linha i, coluna j)
 
-        size = tiles[0].length;
-        board = new char[size * size];
+        this.size = tiles[0].length;
+        this.board = new char[size * size];
+        this.tilesCopy = tiles;
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -23,11 +30,26 @@ public class Board {
                 }
             }
         }
+
+        this.manhattan = this.hamming();
     }
 
     public boolean bound(int i, int j) {
         // retorna o quadro na linha i, coluna j (ou 0 se vazio)
         return i < size && i >= 0 && j < size && j >= 0;
+    }
+
+    public int tileAt(int i, int j) {
+        // retorna o quadro na linha i, coluna j (ou 0 se vazio)
+        if (i < 0 || i > size - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (j < 0 || j > size - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        return board[size * i + j];
     }
 
     public int size() {
@@ -59,7 +81,7 @@ public class Board {
 
     public int manhattan() {
         // soma das distâncias de Manhattan entre os quadros e o objetivo final
-        return 0;
+        return this.manhattan;
     }
 
     public boolean isGoal() {
@@ -68,8 +90,34 @@ public class Board {
     }
 
     public boolean isSolvable() {
-        // este tabuleiro é resolvível?
-        return false;
+        int inversions = 0;
+        int zeroRow = 0;
+        int zeroCol = 0;
+
+        for (int i = 0; i < this.size() * this.size(); i++) {
+            int currentRow = i / this.size();
+            int currentCol = i % this.size();
+
+            if (tileAt(currentRow, currentCol) == 0) {
+                zeroRow = currentRow;
+                zeroCol = currentCol;
+            }
+
+            for (int j = i; j < this.size() * this.size(); j++) {
+                int row = j / this.size();
+                int col = j % this.size();
+
+
+                if (tileAt(row, col) != 0 && tileAt(row, col) < tileAt(currentRow, currentCol)) {
+                    inversions++;
+                }
+            }
+        }
+
+        if (tilesCopy.length % 2 != 0 && inversions % 2 != 0) return false;
+        if (tilesCopy.length % 2 == 0 && (inversions + zeroRow) % 2 == 0) return false;
+
+        return true;
     }
 
     public boolean equals(Object y) {
@@ -118,7 +166,22 @@ public class Board {
         return result;
     }
 
-    public Iterable<Board> neighbors() {
+    public String toString() {
+        // representação em string deste tabuleiro (no formato especificado abaixo)
+        String string = size + "\n";
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                string += " " + ((int)board[size * i + j]) + " ";
+            }
+
+            string += "\n";
+        }
+
+        return string;
+    }
+
+    public Iterable<Board> neig() {
         // todos os tabuleiros vizinhos
 
         if (neighbour.isEmpty()) {
@@ -144,18 +207,12 @@ public class Board {
         return null;
     }
 
-    public String toString() {
-        // representação em string deste tabuleiro (no formato especificado abaixo)
-        String string = size + "\n";
+    public Collection<Board> neighbors() {
+        this.neig();
+        return this.neighbour.stream().collect(Collectors.toList());
+    }
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                string += ((int)board[size * i + j]) + " ";
-            }
-
-            string += "\n";
-        }
-
-        return string;
+    public void setManhattan(int manhattan) {
+        this.manhattan = manhattan;
     }
 }

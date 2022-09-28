@@ -20,6 +20,7 @@ public class SearchNode implements Comparable<SearchNode> {
         }
 
         this.priority = this.moves + this.hamming;
+        board.setManhattan(this.priority);
     }
 
     @Override
